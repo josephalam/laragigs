@@ -1,6 +1,6 @@
 <?php
 
-use GuzzleHttp\Psr7\Response;
+use App\Http\Controllers\ListingController;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
@@ -16,15 +16,12 @@ use App\Models\Listing;
 |
 */
 
-Route::get('/', function () {
-    return View('listings', [
-        'heading' => 'Latest Listings',
-        'listings' => Listing::all()
-    ]);
-});
+Route::get('/',[ListingController::class,'index']);
 
-Route::get('/listings/{id}', function ($id) {
-    return view('listing', [
-        'listing' => Listing::find($id)
-    ]);
-});
+// Route::get('/listings/{id}', function ($id) {
+//     return view('listing', [s
+//         'listing' => Listing::find($id)
+//     ]);
+// });
+
+Route::get('/listings/{listing}',[ListingController::class,'show']);
